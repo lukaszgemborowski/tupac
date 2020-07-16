@@ -14,8 +14,8 @@ namespace detail
 {
 
 template<class T>
-struct type {
-    using t = T;
+struct type_ {
+    using type = T;
 };
 
 template<std::size_t I, class Fun, class Tuple, std::size_t... Indices>
@@ -24,7 +24,7 @@ constexpr auto detail_make_index_sequence_of(Tuple tuple, Fun fun, std::integer_
     if constexpr(std::tuple_size_v<Tuple> == I) {
         return seq;
     } else {
-        if constexpr (fun(type<std::tuple_element_t<I, Tuple>>{})) {
+        if constexpr (fun(type_<std::tuple_element_t<I, Tuple>>{})) {
             return detail_make_index_sequence_of<I + 1>(tuple, fun, std::integer_sequence<std::size_t, Indices..., I>{});
         } else {
             return detail_make_index_sequence_of<I + 1>(tuple, fun, seq);
@@ -144,7 +144,7 @@ template<template<typename> typename Trait>
 struct std_trait_adapter {
     template<class T>
     constexpr auto operator()(T) const {
-        return Trait<typename T::t>::value;
+        return Trait<typename T::type>::value;
     }
 };
 
@@ -159,5 +159,5 @@ inline detail::std_trait_adapter<std::is_integral> is_integral;
 
 }
 
-#endif // _cplusplus
+#endif // __cplusplus
 #endif // TUPAC_TUPAC_HPP
