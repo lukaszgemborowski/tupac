@@ -78,7 +78,7 @@ auto mutate(Tuple&& tup, Fun fun)
     );
 }
 
-}
+} // algo
 
 namespace detail
 {
@@ -148,6 +148,24 @@ struct std_trait_adapter {
     }
 };
 
+template<class Rel, class A, class B>
+struct logical_relation {
+    template<class T>
+    constexpr auto operator()(T t) const {
+        return Rel()(A()(t), B()(t));
+    }
+};
+
+template<template<typename> typename A, template<typename> typename B>
+auto operator && (std_trait_adapter<A>, std_trait_adapter<B>) {
+    return logical_relation<std::logical_and<>, std_trait_adapter<A>, std_trait_adapter<B>>{};
+}
+
+template<template<typename> typename A, template<typename> typename B>
+auto operator || (std_trait_adapter<A>, std_trait_adapter<B>) {
+    return logical_relation<std::logical_or<>, std_trait_adapter<A>, std_trait_adapter<B>>{};
+}
+
 } // detail
 
 inline detail::binder_t<detail::foreach_t> foreach;
@@ -156,6 +174,7 @@ inline detail::binder_t<detail::remove_if> remove_if;
 inline detail::binder_t<detail::mutate_t> mutate;
 
 inline detail::std_trait_adapter<std::is_integral> is_integral;
+inline detail::std_trait_adapter<std::is_class> is_class;
 
 }
 
