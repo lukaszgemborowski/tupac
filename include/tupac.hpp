@@ -65,11 +65,11 @@ auto remove_if(Tuple const& tup, Fun fun)
 }
 
 template<class Tuple, class Fun>
-auto transform(Tuple&& tup, Fun fun)
+auto mutate(Tuple&& tup, Fun fun)
 {
     // Tuple is either "const Tuple&" or "Tuple&"
     // and we can only accept non-const lvalue references
-    static_assert(std::is_lvalue_reference<Tuple>::value, "Tuple is not lvalue reference. Typically you want to transform before applying any other intrusive operators");
+    static_assert(std::is_lvalue_reference<Tuple>::value, "Tuple is not lvalue reference. Typically you want to mutate before applying any other intrusive operators");
     return std::apply(
         [&](auto&&... args) {
             return std::tuple<decltype(fun(args))...>{fun(args)...};
@@ -117,10 +117,10 @@ struct remove_if {
 };
 
 template<class Fun>
-struct transform_t {
+struct mutate_t {
     template<class Tup>
     auto operator()(Tup&& tup) {
-        return algo::transform(std::forward<Tup>(tup), fun_);
+        return algo::mutate(std::forward<Tup>(tup), fun_);
     }
 
     Fun fun_;
@@ -153,7 +153,7 @@ struct std_trait_adapter {
 inline detail::binder_t<detail::foreach_t> foreach;
 inline detail::binder_t<detail::push_back_t> push_back;
 inline detail::binder_t<detail::remove_if> remove_if;
-inline detail::binder_t<detail::transform_t> transform;
+inline detail::binder_t<detail::mutate_t> mutate;
 
 inline detail::std_trait_adapter<std::is_integral> is_integral;
 

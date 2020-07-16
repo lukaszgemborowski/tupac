@@ -1,5 +1,7 @@
 #include "tupac.hpp"
 
+template<class... > struct list {};
+
 int main()
 {
     auto t = std::make_tuple(1, 2, "foo", 3, 3.14);
