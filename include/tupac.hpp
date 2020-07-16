@@ -168,13 +168,25 @@ auto operator || (std_trait_adapter<A>, std_trait_adapter<B>) {
 
 } // detail
 
+// operations
 inline detail::binder_t<detail::foreach_t> foreach;
 inline detail::binder_t<detail::push_back_t> push_back;
 inline detail::binder_t<detail::remove_if> remove_if;
 inline detail::binder_t<detail::mutate_t> mutate;
 
+// qualifiers
 inline detail::std_trait_adapter<std::is_integral> is_integral;
 inline detail::std_trait_adapter<std::is_class> is_class;
+
+// mutators
+struct make_reference_t {
+    template<class T>
+    T& operator()(T&& element) const {
+        return element;
+    }
+};
+
+inline make_reference_t make_reference;
 
 }
 
