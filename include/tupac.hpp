@@ -175,8 +175,31 @@ inline detail::binder_t<detail::remove_if> remove_if;
 inline detail::binder_t<detail::mutate_t> mutate;
 
 // qualifiers
-inline detail::std_trait_adapter<std::is_integral> is_integral;
-inline detail::std_trait_adapter<std::is_class> is_class;
+#define ADAPT_STD(TRAIT) inline detail::std_trait_adapter<std::TRAIT> TRAIT;
+ADAPT_STD(is_integral);
+ADAPT_STD(is_floating_point);
+ADAPT_STD(is_array);
+ADAPT_STD(is_enum);
+ADAPT_STD(is_union);
+ADAPT_STD(is_class);
+ADAPT_STD(is_function);
+ADAPT_STD(is_pointer);
+ADAPT_STD(is_lvalue_reference);
+ADAPT_STD(is_rvalue_reference);
+ADAPT_STD(is_member_object_pointer);
+ADAPT_STD(is_member_function_pointer);
+
+ADAPT_STD(is_fundamental);
+ADAPT_STD(is_arithmetic);
+ADAPT_STD(is_scalar);
+ADAPT_STD(is_object);
+ADAPT_STD(is_compound);
+ADAPT_STD(is_reference);
+ADAPT_STD(is_member_pointer);
+
+// TODO: type properties, supported operations
+// TODO: new adapter required: type relationships
+#undef ADAPT_STD
 
 // mutators
 struct make_reference_t {
