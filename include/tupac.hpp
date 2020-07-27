@@ -143,10 +143,7 @@ auto mutate(Tuple&& tup, Fun fun)
 template<class T, class... Args>
 auto push_back(std::tuple<Args...> const& tup, T&& value)
 {
-    return std::apply(
-        [&](auto&... args) { return std::tuple<Args..., T>{args..., value}; },
-        tup
-    );
+    return std::tuple_cat(tup, std::make_tuple(value));
 }
 
 /// \}
