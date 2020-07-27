@@ -42,4 +42,38 @@ auto push_back = "push_back"_test = []() {
     is_same_tuple<int, double>(t2);
 };
 
+auto algo_for_each = "algo::for_each"_test = []() {
+    auto t = std::make_tuple(1, 2.3, 4.5f);
+    int result = 0;
+
+    tupac::algo::for_each(
+        t,
+        [&](auto const& e) {
+            result += static_cast<int>(e);
+        }
+    );
+
+    check(result == 7);
+
+    tupac::algo::for_each(
+        t,
+        [&](auto& e) {
+            e += 1;
+        }
+    );
+
+    check(std::get<0>(t) == 2);
+    check(std::get<1>(t) == 3.3);
+    check(std::get<2>(t) == 5.5f);
+};
+
+auto for_each = "for_each"_test = []() {
+    auto t = std::make_tuple(1, 2, 3);
+    int result = 0;
+
+    t | tupac::for_each([&](auto const &e) { result += e; });
+
+    check(result == 6);
+};
+
 int main() {}
