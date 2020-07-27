@@ -153,7 +153,7 @@ auto push_back(std::tuple<Args...> const& tup, T&& value)
 namespace detail
 {
 template<class Fun>
-struct foreach_t {
+struct for_each_t {
     template<class Tup>
     auto operator()(Tup&& tup) {
         algo::for_each(tup, fun_);
@@ -245,9 +245,9 @@ auto operator || (std_trait_adapter<A>, std_trait_adapter<B>) {
 /// Executes algo::for_each over a tuple.
 ///
 /// \code{.cpp}
-/// a_tuple | foreach([](auto &e) { std::cout << e << ", "; });
+/// a_tuple | for_each([](auto &e) { std::cout << e << ", "; });
 /// \endcode
-inline detail::binder_t<detail::foreach_t> foreach;
+inline detail::binder_t<detail::for_each_t> for_each;
 
 /// \brief Add an element at the end of the tuple
 ///
