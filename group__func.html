@@ -54,6 +54,9 @@ Variables</h2></td></tr>
 <tr class="memitem:ga4fbba8e945e02c90edc5ccea05256730"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtupac_1_1detail_1_1binder__t.html">detail::binder_t</a>&lt; <a class="el" href="structtupac_1_1detail_1_1push__back__t.html">detail::push_back_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__func.html#ga4fbba8e945e02c90edc5ccea05256730">tupac::push_back</a></td></tr>
 <tr class="memdesc:ga4fbba8e945e02c90edc5ccea05256730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an element at the end of the tuple.  <a href="group__func.html#ga4fbba8e945e02c90edc5ccea05256730">More...</a><br /></td></tr>
 <tr class="separator:ga4fbba8e945e02c90edc5ccea05256730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4c5191eea8d1a4221479c5d510a27c38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtupac_1_1detail_1_1binder__t.html">detail::binder_t</a>&lt; <a class="el" href="structtupac_1_1detail_1_1push__front__t.html">detail::push_front_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__func.html#ga4c5191eea8d1a4221479c5d510a27c38">tupac::push_front</a></td></tr>
+<tr class="memdesc:ga4c5191eea8d1a4221479c5d510a27c38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an element at the beginning of the tuple.  <a href="group__func.html#ga4c5191eea8d1a4221479c5d510a27c38">More...</a><br /></td></tr>
+<tr class="separator:ga4c5191eea8d1a4221479c5d510a27c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2af5c13f724d244229ff1919ea06d714"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtupac_1_1detail_1_1binder__t.html">detail::binder_t</a>&lt; <a class="el" href="structtupac_1_1detail_1_1remove__if.html">detail::remove_if</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__func.html#ga2af5c13f724d244229ff1919ea06d714">tupac::remove_if</a></td></tr>
 <tr class="memdesc:ga2af5c13f724d244229ff1919ea06d714"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove elements that satisfy predicate.  <a href="group__func.html#ga2af5c13f724d244229ff1919ea06d714">More...</a><br /></td></tr>
 <tr class="separator:ga2af5c13f724d244229ff1919ea06d714"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,6 +148,33 @@ Variables</h2></td></tr>
 </div><!-- fragment --> 
 </div>
 </div>
+<a id="ga4c5191eea8d1a4221479c5d510a27c38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4c5191eea8d1a4221479c5d510a27c38">&#9670;&nbsp;</a></span>push_front</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtupac_1_1detail_1_1binder__t.html">detail::binder_t</a>&lt;<a class="el" href="structtupac_1_1detail_1_1push__front__t.html">detail::push_front_t</a>&gt; tupac::push_front</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add an element at the beginning of the tuple. </p>
+<p>Executes <a class="el" href="group__algo.html#ga0f64f371102b95720f0c313f5c1c7e38" title="Add an element at the beginning of the tuple.">algo::push_front</a> over a tuple.</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> t = std::make_tuple(<span class="stringliteral">&quot;foo&quot;</span>);</div>
+<div class="line"><span class="keyword">auto</span> u = t | <a class="code" href="group__func.html#ga4c5191eea8d1a4221479c5d510a27c38">push_front</a>(42);</div>
+</div><!-- fragment --> 
+</div>
+</div>
 <a id="ga2af5c13f724d244229ff1919ea06d714"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga2af5c13f724d244229ff1919ea06d714">&#9670;&nbsp;</a></span>remove_if</h2>
 
@@ -175,11 +205,12 @@ Variables</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="agroup__func_html_ga4fbba8e945e02c90edc5ccea05256730"><div class="ttname"><a href="group__func.html#ga4fbba8e945e02c90edc5ccea05256730">tupac::push_back</a></div><div class="ttdeci">detail::binder_t&lt; detail::push_back_t &gt; push_back</div><div class="ttdoc">Add an element at the end of the tuple.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:260</div></div>
-<div class="ttc" id="agroup__func_html_ga0e6b557e2be5136dbc17004cf95e4a92"><div class="ttname"><a href="group__func.html#ga0e6b557e2be5136dbc17004cf95e4a92">tupac::mutate</a></div><div class="ttdeci">detail::binder_t&lt; detail::mutate_t &gt; mutate</div><div class="ttdoc">Change type and/or value of each tuple element.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:285</div></div>
-<div class="ttc" id="agroup__func_html_ga77a96d000efb755e97ecbadf4248eb2b"><div class="ttname"><a href="group__func.html#ga77a96d000efb755e97ecbadf4248eb2b">tupac::for_each</a></div><div class="ttdeci">detail::binder_t&lt; detail::for_each_t &gt; for_each</div><div class="ttdoc">Execute a functor over each tuple element.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:250</div></div>
-<div class="ttc" id="agroup__pred_html_gaeed25681dcc22cc55876c5fb337d0c41"><div class="ttname"><a href="group__pred.html#gaeed25681dcc22cc55876c5fb337d0c41">tupac::is_integral</a></div><div class="ttdeci">detail::std_trait_adapter&lt; std::is_integral &gt; is_integral</div><div class="ttdoc">Wraps std::is_integral trait.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:292</div></div>
-<div class="ttc" id="agroup__func_html_ga2af5c13f724d244229ff1919ea06d714"><div class="ttname"><a href="group__func.html#ga2af5c13f724d244229ff1919ea06d714">tupac::remove_if</a></div><div class="ttdeci">detail::binder_t&lt; detail::remove_if &gt; remove_if</div><div class="ttdoc">Remove elements that satisfy predicate.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:272</div></div>
+<div class="ttc" id="agroup__func_html_ga4fbba8e945e02c90edc5ccea05256730"><div class="ttname"><a href="group__func.html#ga4fbba8e945e02c90edc5ccea05256730">tupac::push_back</a></div><div class="ttdeci">detail::binder_t&lt; detail::push_back_t &gt; push_back</div><div class="ttdoc">Add an element at the end of the tuple.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:282</div></div>
+<div class="ttc" id="agroup__func_html_ga0e6b557e2be5136dbc17004cf95e4a92"><div class="ttname"><a href="group__func.html#ga0e6b557e2be5136dbc17004cf95e4a92">tupac::mutate</a></div><div class="ttdeci">detail::binder_t&lt; detail::mutate_t &gt; mutate</div><div class="ttdoc">Change type and/or value of each tuple element.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:317</div></div>
+<div class="ttc" id="agroup__func_html_ga4c5191eea8d1a4221479c5d510a27c38"><div class="ttname"><a href="group__func.html#ga4c5191eea8d1a4221479c5d510a27c38">tupac::push_front</a></div><div class="ttdeci">detail::binder_t&lt; detail::push_front_t &gt; push_front</div><div class="ttdoc">Add an element at the beginning of the tuple.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:292</div></div>
+<div class="ttc" id="agroup__func_html_ga77a96d000efb755e97ecbadf4248eb2b"><div class="ttname"><a href="group__func.html#ga77a96d000efb755e97ecbadf4248eb2b">tupac::for_each</a></div><div class="ttdeci">detail::binder_t&lt; detail::for_each_t &gt; for_each</div><div class="ttdoc">Execute a functor over each tuple element.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:272</div></div>
+<div class="ttc" id="agroup__pred_html_gaeed25681dcc22cc55876c5fb337d0c41"><div class="ttname"><a href="group__pred.html#gaeed25681dcc22cc55876c5fb337d0c41">tupac::is_integral</a></div><div class="ttdeci">detail::std_trait_adapter&lt; std::is_integral &gt; is_integral</div><div class="ttdoc">Wraps std::is_integral trait.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:324</div></div>
+<div class="ttc" id="agroup__func_html_ga2af5c13f724d244229ff1919ea06d714"><div class="ttname"><a href="group__func.html#ga2af5c13f724d244229ff1919ea06d714">tupac::remove_if</a></div><div class="ttdeci">detail::binder_t&lt; detail::remove_if &gt; remove_if</div><div class="ttdoc">Remove elements that satisfy predicate.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:304</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

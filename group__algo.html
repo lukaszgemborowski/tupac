@@ -67,6 +67,10 @@ Functions</h2></td></tr>
 <tr class="memitem:gaf59906aa172c685e5c2488b08978c4b0"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__algo.html#gaf59906aa172c685e5c2488b08978c4b0">tupac::algo::push_back</a> (std::tuple&lt; Args... &gt; const &amp;tup, T &amp;&amp;value)</td></tr>
 <tr class="memdesc:gaf59906aa172c685e5c2488b08978c4b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an element at the end of the tuple.  <a href="group__algo.html#gaf59906aa172c685e5c2488b08978c4b0">More...</a><br /></td></tr>
 <tr class="separator:gaf59906aa172c685e5c2488b08978c4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f64f371102b95720f0c313f5c1c7e38"><td class="memTemplParams" colspan="2">template&lt;class T , class... Args&gt; </td></tr>
+<tr class="memitem:ga0f64f371102b95720f0c313f5c1c7e38"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__algo.html#ga0f64f371102b95720f0c313f5c1c7e38">tupac::algo::push_front</a> (std::tuple&lt; Args... &gt; const &amp;tup, T &amp;&amp;value)</td></tr>
+<tr class="memdesc:ga0f64f371102b95720f0c313f5c1c7e38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an element at the beginning of the tuple.  <a href="group__algo.html#ga0f64f371102b95720f0c313f5c1c7e38">More...</a><br /></td></tr>
+<tr class="separator:ga0f64f371102b95720f0c313f5c1c7e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Basic tuple algorithms. </p>
@@ -201,6 +205,46 @@ template&lt;class T , class... Args&gt; </div>
 
 </div>
 </div>
+<a id="ga0f64f371102b95720f0c313f5c1c7e38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0f64f371102b95720f0c313f5c1c7e38">&#9670;&nbsp;</a></span>push_front()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto tupac::algo::push_front </td>
+          <td>(</td>
+          <td class="paramtype">std::tuple&lt; Args... &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>tup</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add an element at the beginning of the tuple. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">tup</td><td>input tuple </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to prepend</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Creates a new tuple and prepend T at the beginning. </p>
+
+</div>
+</div>
 <a id="gae947ac9d8229f55656d66001c92a4e8f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gae947ac9d8229f55656d66001c92a4e8f">&#9670;&nbsp;</a></span>remove_if()</h2>
 
@@ -246,7 +290,7 @@ template&lt;class Tuple , class Fun &gt; </div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="agroup__algo_html_ga17cd86349eb653a1633cb224a741ed50"><div class="ttname"><a href="group__algo.html#ga17cd86349eb653a1633cb224a741ed50">tupac::algo::mutate</a></div><div class="ttdeci">auto mutate(Tuple &amp;&amp;tup, Fun fun)</div><div class="ttdoc">Change type and/or value of each tuple element.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:124</div></div>
-<div class="ttc" id="agroup__pred_html_gaeed25681dcc22cc55876c5fb337d0c41"><div class="ttname"><a href="group__pred.html#gaeed25681dcc22cc55876c5fb337d0c41">tupac::is_integral</a></div><div class="ttdeci">detail::std_trait_adapter&lt; std::is_integral &gt; is_integral</div><div class="ttdoc">Wraps std::is_integral trait.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:292</div></div>
+<div class="ttc" id="agroup__pred_html_gaeed25681dcc22cc55876c5fb337d0c41"><div class="ttname"><a href="group__pred.html#gaeed25681dcc22cc55876c5fb337d0c41">tupac::is_integral</a></div><div class="ttdeci">detail::std_trait_adapter&lt; std::is_integral &gt; is_integral</div><div class="ttdoc">Wraps std::is_integral trait.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:324</div></div>
 <div class="ttc" id="agroup__algo_html_gae947ac9d8229f55656d66001c92a4e8f"><div class="ttname"><a href="group__algo.html#gae947ac9d8229f55656d66001c92a4e8f">tupac::algo::remove_if</a></div><div class="ttdeci">auto remove_if(Tuple const &amp;tup, Fun fun)</div><div class="ttdoc">Remove elements that satisfy predicate.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:100</div></div>
 <div class="ttc" id="agroup__algo_html_ga64b8c3a3abfefa0a12770ef6bc8c43ba"><div class="ttname"><a href="group__algo.html#ga64b8c3a3abfefa0a12770ef6bc8c43ba">tupac::algo::for_each</a></div><div class="ttdeci">void for_each(Tuple &amp;tup, Fun fun)</div><div class="ttdoc">Execute a functor over each tuple element.</div><div class="ttdef"><b>Definition:</b> tupac.hpp:81</div></div>
 <!-- start footer part -->
