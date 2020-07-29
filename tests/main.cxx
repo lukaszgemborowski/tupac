@@ -76,4 +76,24 @@ auto for_each = "for_each"_test = []() {
     check(result == 6);
 };
 
+auto algo_remove_if = "algo::remove_if"_test = []() {
+    auto t1 = std::make_tuple(aClass{}, 42, 3.14, aClass{});
+    auto t2 = tupac::algo::remove_if(t1, tupac::is_class);
+
+    is_same_tuple<int, double>(t2);
+
+    check(std::get<0>(t2) == 42);
+    check(std::get<1>(t2) == 3.14);
+};
+
+auto remove_if = "remove_if"_test = []() {
+    auto t1 = std::make_tuple(aClass{}, 42, 3.14, aClass{});
+    auto t2 = t1 | tupac::remove_if(tupac::is_class);
+
+    is_same_tuple<int, double>(t2);
+
+    check(std::get<0>(t2) == 42);
+    check(std::get<1>(t2) == 3.14);
+};
+
 int main() {}
