@@ -42,6 +42,31 @@ auto push_back = "push_back"_test = []() {
     is_same_tuple<int, double>(t2);
 };
 
+auto algo_push_front = "algo::push_front"_test = []() {
+    using namespace std::literals;
+
+    auto t = std::make_tuple(1, 2.3);
+    is_same_tuple<int, double>(t);
+
+    auto t2 = tupac::algo::push_front<const char *>(t, "foo");
+    is_same_tuple<const char*, int, double>(t2);
+
+    auto t3 = tupac::algo::push_front(t2, aClass{42});
+    is_same_tuple<aClass, const char*, int, double>(t3);
+
+    check(std::get<0>(t3).aValue == 42);
+    check(std::get<1>(t3) == "foo"s);
+    check(std::get<2>(t3) == 1);
+    check(std::get<3>(t3) == 2.3);
+};
+
+auto push_front = "push_front"_test = []() {
+    auto t = std::make_tuple(42);
+    auto t2 = t | tupac::push_front(3.14);
+
+    is_same_tuple<double, int>(t2);
+};
+
 auto algo_for_each = "algo::for_each"_test = []() {
     auto t = std::make_tuple(1, 2.3, 4.5f);
     int result = 0;

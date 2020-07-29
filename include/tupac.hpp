@@ -146,6 +146,18 @@ auto push_back(std::tuple<Args...> const& tup, T&& value)
     return std::tuple_cat(tup, std::make_tuple(value));
 }
 
+/// \brief Add an element at the beginning of the tuple
+///
+/// \param[in] tup input tuple
+/// \param[in] value value to prepend
+///
+/// Creates a new tuple and prepend T at the beginning.
+template<class T, class... Args>
+auto push_front(std::tuple<Args...> const& tup, T&& value)
+{
+    return std::tuple_cat(std::make_tuple(std::forward<T>(value)), tup);
+}
+
 /// \}
 
 } // algo
@@ -191,6 +203,16 @@ struct mutate_t {
     }
 
     Fun fun_;
+};
+
+template<class T>
+struct push_front_t {
+    template<class Tup>
+    auto operator()(Tup &&tup) {
+        return algo::push_front(tup, arg_);
+    };
+
+    T arg_;
 };
 
 template<template<typename...> typename T>
@@ -258,6 +280,16 @@ inline detail::binder_t<detail::for_each_t> for_each;
 /// auto u = t | push_back(42);
 /// \endcode
 inline detail::binder_t<detail::push_back_t> push_back;
+
+/// \brief Add an element at the beginning of the tuple
+///
+/// Executes algo::push_front over a tuple.
+///
+/// \code{.cpp}
+/// auto t = std::make_tuple("foo");
+/// auto u = t | push_front(42);
+/// \endcode
+inline detail::binder_t<detail::push_front_t> push_front;
 
 /// \brief Remove elements that satisfy predicate
 ///
