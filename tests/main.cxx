@@ -121,4 +121,21 @@ auto remove_if = "remove_if"_test = []() {
     check(std::get<1>(t2) == 3.14);
 };
 
+template<int Value>
+using const_int = std::integral_constant<int, Value>;
+
+auto algo_get = "algo::get"_test = []() {
+    auto t = std::make_tuple(const_int<1>{}, const_int<2>{}, const_int<3>{});
+    constexpr auto get_value_of_2 = [](auto const e) {
+        using type = typename decltype(e)::type;
+        if constexpr (type::value == 2)
+            return std::true_type{};
+        else
+            return std::false_type{};
+    };
+
+    auto r = tupac::algo::get(t, get_value_of_2);
+    check(r == 2);
+};
+
 int main() {}

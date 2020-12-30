@@ -47,6 +47,11 @@ constexpr auto tuple_from_indices(Tuple tuple, std::integer_sequence<std::size_t
     };
 }
 
+template<std::size_t Value>
+constexpr auto single_element_sequence_value(std::integer_sequence<std::size_t, Value>) {
+    return Value;
+}
+
 } // detail
 
 /// \brief Tuple algorithms.
@@ -156,6 +161,21 @@ template<class T, class... Args>
 auto push_front(std::tuple<Args...> const& tup, T&& value)
 {
     return std::tuple_cat(std::make_tuple(std::forward<T>(value)), tup);
+}
+
+/// \brief Get a reference to element matching predicate.
+///
+/// \param[in] tup input tuple
+/// \param[in] fun predicate
+///
+/// Returns a reference to the element which type matches provided predicate.
+/// static_assert's otherwise.
+template<class Tuple, class Fun>
+auto& get(Tuple& tup, Fun fun)
+{
+    using found_seq = decltype(detail::make_index_sequence_of(tup, fun));
+    static_assert(found_seq::size() == 1, "multiple matches");
+    return std::get<detail::single_element_sequence_value(found_seq{})>(tup);
 }
 
 /// \}
