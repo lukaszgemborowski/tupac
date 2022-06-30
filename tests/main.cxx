@@ -138,4 +138,18 @@ auto algo_get = "algo::get"_test = []() {
     check(r == 2);
 };
 
+auto algo_contains = "algo::contains"_test = [] {
+    auto t1 = std::make_tuple(1, 2, 3, 4.f);
+    constexpr auto is_int = [](auto e) {
+        using type = typename decltype(e)::type;
+
+        return std::is_same<type, int>::value;
+    };
+
+    check(tupac::algo::contains(t1, is_int));
+
+    auto t2 = std::make_tuple("foo", 3.4f);
+    check(tupac::algo::contains(t2, is_int) == false);
+};
+
 int main() {}

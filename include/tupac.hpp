@@ -179,6 +179,18 @@ auto& get(Tuple& tup, Fun fun)
     return std::get<detail::single_element_sequence_value(found_seq{})>(tup);
 }
 
+
+/// \brief Checks if there's at least one element matching predicate.
+///
+/// \param [in] tup input tuple
+/// \param [in] fun predicate
+template<class Tuple, class Fun>
+bool contains(Tuple& tup, Fun fun)
+{
+    using found_seq = decltype(detail::make_index_sequence_of(tup, fun));
+    return found_seq::size() > 0;
+}
+
 /// \}
 
 } // algo
