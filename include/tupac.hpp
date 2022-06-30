@@ -103,7 +103,7 @@ void for_each(Tuple &tup, Fun fun)
 /// \endcode
 /// \see pred
 template<class Tuple, class Fun>
-auto remove_if(Tuple const& tup, Fun fun)
+constexpr auto remove_if(Tuple const& tup, Fun fun)
 {
     auto negate = [fun](auto arg) { return !fun(arg); };
     return detail::tuple_from_indices(tup, detail::make_index_sequence_of(tup, negate));
@@ -127,7 +127,7 @@ auto remove_if(Tuple const& tup, Fun fun)
 ///
 /// \see make_reference
 template<class Tuple, class Fun>
-auto mutate(Tuple&& tup, Fun fun)
+constexpr auto mutate(Tuple&& tup, Fun fun)
 {
     // Tuple is either "const Tuple&" or "Tuple&"
     // and we can only accept non-const lvalue references
@@ -147,7 +147,7 @@ auto mutate(Tuple&& tup, Fun fun)
 ///
 /// Creates new tuple and append T at the end.
 template<class T, class... Args>
-auto push_back(std::tuple<Args...> const& tup, T&& value)
+constexpr auto push_back(std::tuple<Args...> const& tup, T&& value)
 {
     return std::tuple_cat(tup, std::make_tuple(value));
 }
@@ -159,7 +159,7 @@ auto push_back(std::tuple<Args...> const& tup, T&& value)
 ///
 /// Creates a new tuple and prepend T at the beginning.
 template<class T, class... Args>
-auto push_front(std::tuple<Args...> const& tup, T&& value)
+constexpr auto push_front(std::tuple<Args...> const& tup, T&& value)
 {
     return std::tuple_cat(std::make_tuple(std::forward<T>(value)), tup);
 }
@@ -172,7 +172,7 @@ auto push_front(std::tuple<Args...> const& tup, T&& value)
 /// Returns a reference to the element which type matches provided predicate.
 /// static_assert's otherwise.
 template<class Tuple, class Fun>
-auto& get(Tuple& tup, Fun fun)
+constexpr auto& get(Tuple& tup, Fun fun)
 {
     using found_seq = decltype(detail::make_index_sequence_of(tup, fun));
     static_assert(found_seq::size() == 1, "multiple matches");
@@ -185,7 +185,7 @@ auto& get(Tuple& tup, Fun fun)
 /// \param [in] tup input tuple
 /// \param [in] fun predicate
 template<class Tuple, class Fun>
-bool contains(Tuple& tup, Fun fun)
+constexpr bool contains(Tuple& tup, Fun fun)
 {
     using found_seq = decltype(detail::make_index_sequence_of(tup, fun));
     return found_seq::size() > 0;
@@ -200,7 +200,7 @@ namespace detail
 template<class Fun>
 struct for_each_t {
     template<class Tup>
-    auto operator()(Tup&& tup) {
+    constexpr auto operator()(Tup&& tup) {
         algo::for_each(tup, fun_);
         return tup;
     }
@@ -211,7 +211,7 @@ struct for_each_t {
 template<class T>
 struct push_back_t {
     template<class... Args>
-    auto operator()(std::tuple<Args...> const& tup) {
+    constexpr auto operator()(std::tuple<Args...> const& tup) {
         return algo::push_back(tup, arg_);
     }
 
@@ -221,7 +221,7 @@ struct push_back_t {
 template<class Fun>
 struct remove_if {
     template<class Tup>
-    auto operator()(Tup const& tup) {
+    constexpr auto operator()(Tup const& tup) {
         return algo::remove_if(tup, fun_);
     }
 
@@ -231,7 +231,7 @@ struct remove_if {
 template<class Fun>
 struct mutate_t {
     template<class Tup>
-    auto operator()(Tup&& tup) {
+    constexpr auto operator()(Tup&& tup) {
         return algo::mutate(std::forward<Tup>(tup), fun_);
     }
 
@@ -241,7 +241,7 @@ struct mutate_t {
 template<class T>
 struct push_front_t {
     template<class Tup>
-    auto operator()(Tup &&tup) {
+    constexpr auto operator()(Tup &&tup) {
         return algo::push_front(tup, arg_);
     };
 
@@ -251,13 +251,13 @@ struct push_front_t {
 template<template<typename...> typename T>
 struct binder_t {
     template<class Fun>
-    auto operator()(Fun fun) {
+    constexpr auto operator()(Fun fun) {
         return T<Fun>{fun};
     }
 };
 
 template<class Tuple, class Functor>
-auto operator|(Tuple&& tuple, Functor functor)
+constexpr auto operator|(Tuple&& tuple, Functor functor)
 {
     return functor(std::forward<Tuple>(tuple));
 }
@@ -279,12 +279,12 @@ struct logical_relation {
 };
 
 template<template<typename> typename A, template<typename> typename B>
-auto operator && (std_trait_adapter<A>, std_trait_adapter<B>) {
+constexpr auto operator && (std_trait_adapter<A>, std_trait_adapter<B>) {
     return logical_relation<std::logical_and<>, std_trait_adapter<A>, std_trait_adapter<B>>{};
 }
 
 template<template<typename> typename A, template<typename> typename B>
-auto operator || (std_trait_adapter<A>, std_trait_adapter<B>) {
+constexpr auto operator || (std_trait_adapter<A>, std_trait_adapter<B>) {
     return logical_relation<std::logical_or<>, std_trait_adapter<A>, std_trait_adapter<B>>{};
 }
 
@@ -418,7 +418,7 @@ inline detail::std_trait_adapter<std::is_member_pointer> is_member_pointer;
 // mutators
 struct make_reference_t {
     template<class T>
-    T& operator()(T&& element) const {
+    constexpr T& operator()(T&& element) const {
         return element;
     }
 };
