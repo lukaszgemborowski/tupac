@@ -3,6 +3,7 @@
 
 #include <tuple>
 #include <type_traits>
+#include <functional>
 
 #if __cplusplus < 201703L
 # error "tupac requires at least C++17 support"
