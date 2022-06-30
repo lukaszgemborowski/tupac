@@ -10,7 +10,7 @@ int main()
     std::make_tuple(aClass{}, 1)
         | tupac::push_back(3.4)
         | tupac::remove_if(tupac::is_integral || tupac::is_class)
-        | tupac::foreach(print);
+        | tupac::for_each(print);
 
     auto t3 = std::make_tuple(1, 2.3);
     auto t4 = t3 | tupac::mutate(tupac::make_reference);
